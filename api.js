@@ -78,7 +78,9 @@ function getHtml(platform, region, tag) {
         uri: encodeURI(url),
         encoding: 'utf8'
     };
-    return axios.get(encodeURI(url)).then(result => result.data);    
+    return axios.get(encodeURI(url)).then(result => {
+        return result.data;
+    });    
 }
 
 function parseHtml(html) {

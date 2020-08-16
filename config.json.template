@@ -1,0 +1,14 @@
+{
+    "profiles": [
+        {
+            "battletag": "janedoe#1234",
+            "platform": "pc",
+            "region": "us"
+        },
+        {
+            "battletag": "ml7#1234",
+            "platform": "pc",
+            "region": "us"
+        }        
+    ]    
+}
