@@ -105,3 +105,6 @@ dist
 
 # downloaded json files
 data/
+
+# local config
+config.json
