@@ -138,10 +138,10 @@ function parseHtml(html) {
     return result;
 }
 
-function getStats(platform, region, player) {
-    return getHtml(platform, region, player).then(parseHtml);
+function getStatsForProfile(profile) {
+    return getHtml(profile.platform, profile.region, profile.battletag).then(parseHtml);
 }
 
 module.exports = {
-    getStats
+    getStatsForProfile: getStatsForProfile
 };

@@ -1,0 +1,18 @@
+{
+  "name": "overwatcher",
+  "description": "",
+  "main": "charts.js",
+  "authors": [
+    "Blorgbeard <blorgbeard@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/blorgbeard/overwatcher",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

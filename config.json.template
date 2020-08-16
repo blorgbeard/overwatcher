@@ -10,5 +10,42 @@
             "platform": "pc",
             "region": "us"
         }        
-    ]    
+    ],
+    "charts": [
+        {
+            "data": {
+                "x": "Date",
+                "columns": [
+                    {"_fn": "series", "args": ["Date", "$.timestamp"]},
+                    {"_fn": "series", "args": ["Tank SR", "$.data.skillrating.tank"]},
+                    {"_fn": "series", "args": ["Support SR", "$.data.skillrating.support"]},
+                    {"_fn": "series", "args": ["Damage SR", "$.data.skillrating.damage"]},
+                    {"_fn": "series", "args": ["Played", "$.data.statistics.competitive.ALL.games_played.total"]},
+                    {"_fn": "series", "args": ["Won", "$.data.statistics.competitive.ALL.games_won.total"]},
+                    {"_fn": "series", "args": ["Lost", "$.data.statistics.competitive.ALL.games_lost.total"]},
+                    {"_fn": "series", "args": ["Tied", "$.data.statistics.competitive.ALL.games_tied.total"]}
+                ],
+                "axes": {
+                    "Tank SR": "y",
+                    "Support SR": "y",
+                    "Damage SR": "y",
+                    "Played": "y2",
+                    "Won": "y2",
+                    "Lost": "y2",
+                    "Tied": "y2"
+                }
+            },
+            "axis": {
+                "x": {
+                    "type": "timeseries",
+                    "tick": {
+                        "format": "%Y-%m-%d"
+                    }
+                },
+                "y2": {
+                    "show": true
+                }
+            }
+        }
+    ]
 }
