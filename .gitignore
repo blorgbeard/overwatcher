@@ -108,3 +108,6 @@ data/
 
 # local config
 config.json
+
+# generated chart data
+charts/data.js
