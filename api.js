@@ -74,19 +74,23 @@ function getHtml(platform, region, tag) {
         ? `https://playoverwatch.com/en-us/career/${platform}/${region}/${tag.replace('#', '-')}/`
         : `https://playoverwatch.com/en-us/career/${platform}/${tag.replace('#', '-')}/`;
 
-    const options = {
-        uri: encodeURI(url),
-        encoding: 'utf8'
-    };
-    return axios.get(encodeURI(url)).then(result => {
+    return axios.get(encodeURI(url), {
+        headers: {
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
+        }
+    }).then(result => {
         return result.data;
-    });    
+    });
 }
 
 function parseHtml(html) {
     const $ = cheerio.load(html);
     let result = {};
     
+    if ($("body.ErrorPage").length > 0) {
+        throw new Error($("div.content-box").text());
+    }
+
     result.name = $("div.masthead-player>h1.header-masthead").text();
     
     let masthead = $("div.masthead-player-progression:not(.masthead-player-progression--mobile)");
