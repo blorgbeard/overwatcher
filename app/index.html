@@ -4,18 +4,19 @@
         <!-- CSS only -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <!-- Load c3.css -->
-        <link href="bower_components/c3/c3.min.css" rel="stylesheet">
+        <link href="c3/c3.min.css" rel="stylesheet">
         <!-- Load d3.js and c3.js -->
-        <script src="bower_components/d3/d3.min.js" charset="utf-8"></script>
-        <script src="bower_components/c3/c3.min.js"></script>
+        <script src="d3/dist/d3.min.js" charset="utf-8"></script>
+        <script src="c3/c3.min.js"></script>
+        <!-- Gotta have that jquery -->
+        <script src="jquery/dist/jquery.min.js" charset="utf-8"></script>
     </head>
     <body>
 
-        <!-- figure out how to embed multiple charts? -->
+        <!-- figure out how to embed arbitrary number of charts? -->
         <div id="chart"></div>
 
-        <script src="charts/data.js"></script>
-        <script src="charts/load.js"></script>
+        <script src="load.js"></script>
 
         <!-- JS, Popper.js, and jQuery -->
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

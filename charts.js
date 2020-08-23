@@ -51,18 +51,22 @@ const processChartObject = function(obj, context) {
     return obj;
 };
 
-config.charts.forEach(chart => {
-    // implement later
-    const profile = config.profiles[0]; // it me.
-    const files = database.getAllFiles(profile);
-
-    const context = {
-        profile,
-        files
-    };
-
-    let spec = processChartObject(chart, context);
-
-    const javascript = "chartSpec = " + JSON.stringify(spec) + ";";
-    fs.writeFileSync(path.join(__dirname, 'charts/data.js'), javascript);
-});
+module.exports = {
+    getChartData: function() {
+        let spec = {};
+        // todo: multiple charts
+        config.charts.forEach(chart => {
+            // implement later
+            const profile = config.profiles[0]; // it me.
+            const files = database.getAllFiles(profile);
+        
+            const context = {
+                profile,
+                files
+            };
+        
+            spec = processChartObject(chart, context);                    
+        });
+        return spec;
+    }
+};

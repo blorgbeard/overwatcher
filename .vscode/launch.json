@@ -3,18 +3,25 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
+    "configurations": [        
         {
-            "name": "Launch Chrome",
+            "type": "node",
             "request": "launch",
-            "type": "pwa-chrome",
-            "url": "${workspaceFolder}/charts.html",
-            "webRoot": "${workspaceFolder}"
+            "name": "index.js",
+            "skipFiles": [
+                "<node_internals>/**"
+            ],
+            "program": "${workspaceFolder}/index.js",
+            "serverReadyAction": {
+                "pattern": "Listening on port ([0-9]+)",
+                "uriFormat": "http://localhost:%s",
+                "action": "openExternally"
+            }
         },
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch poll.js",
+            "name": "poll.js",
             "skipFiles": [
                 "<node_internals>/**"
             ],
@@ -23,7 +30,7 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch charts.js",
+            "name": "charts.js",
             "skipFiles": [
                 "<node_internals>/**"
             ],

@@ -5,11 +5,17 @@
   "main": "poll.js",
   "dependencies": {
     "axios": "^0.19.2",
-    "bower": "^1.8.8",
+    "c3": "^0.7.20",
     "cheerio": "^1.0.0-rc.3",
+    "express": "^4.17.1",
+    "jquery": "^3.5.1",
     "jsonpath-plus": "^4.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "del": "^5.1.0",
+    "gulp": "^4.0.2",
+    "merge-stream": "^2.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
