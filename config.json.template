@@ -1,11 +1,15 @@
 {
     "profiles": [
         {
+            "id": "janedoe",
+            "displayname": "Jane Doe",
             "battletag": "janedoe#1234",
             "platform": "pc",
             "region": "us"
         },
         {
+            "id", "ml7",
+            "displayname": "ML7",
             "battletag": "ml7#1234",
             "platform": "pc",
             "region": "us"
@@ -13,26 +17,20 @@
     ],
     "charts": [
         {
+            "id": "sr-by-date",
+            "title": "SR by Date",            
             "data": {
                 "x": "Date",
-                "columns": [
+                "columns": [                    
                     {"_fn": "series", "args": ["Date", "$.timestamp"]},
                     {"_fn": "series", "args": ["Tank SR", "$.data.skillrating.tank"]},
                     {"_fn": "series", "args": ["Support SR", "$.data.skillrating.support"]},
-                    {"_fn": "series", "args": ["Damage SR", "$.data.skillrating.damage"]},
-                    {"_fn": "series", "args": ["Played", "$.data.statistics.competitive.ALL.games_played.total"]},
-                    {"_fn": "series", "args": ["Won", "$.data.statistics.competitive.ALL.games_won.total"]},
-                    {"_fn": "series", "args": ["Lost", "$.data.statistics.competitive.ALL.games_lost.total"]},
-                    {"_fn": "series", "args": ["Tied", "$.data.statistics.competitive.ALL.games_tied.total"]}
+                    {"_fn": "series", "args": ["Damage SR", "$.data.skillrating.damage"]}                
                 ],
                 "axes": {
                     "Tank SR": "y",
                     "Support SR": "y",
-                    "Damage SR": "y",
-                    "Played": "y2",
-                    "Won": "y2",
-                    "Lost": "y2",
-                    "Tied": "y2"
+                    "Damage SR": "y"
                 }
             },
             "axis": {
@@ -41,10 +39,98 @@
                     "tick": {
                         "format": "%Y-%m-%d"
                     }
-                },
-                "y2": {
-                    "show": true
                 }
+            }
+        },
+        {
+            "id": "sr-by-games-played",
+            "title": "SR by Games Played",
+            "data": {
+                "x": "Games",
+                "columns": {"_fn": "series_list_remove_duplicates", "args": [
+                    {"_fn": "series_but_remove_drops", "args": ["Games", "$.data.statistics.competitive.ALL.games_played.total"]},
+                    {"_fn": "series", "args": ["Tank SR", "$.data.skillrating.tank"]},
+                    {"_fn": "series", "args": ["Support SR", "$.data.skillrating.support"]},
+                    {"_fn": "series", "args": ["Damage SR", "$.data.skillrating.damage"]}
+                ]}
+            }
+        },
+        {
+            "id": "games-played-by-date",
+            "title": "Games Played by Date",
+            "data": {
+                "x": "Date",
+                "columns": [
+                    {"_fn": "series_but_remove_drops", "args": ["Games", "$.data.statistics.competitive.ALL.games_played.total"]},
+                    {"_fn": "series", "args": ["Date", "$.timestamp"]}
+                ]                
+            },
+            "axis": {
+                "x": {
+                    "type": "timeseries",
+                    "tick": {
+                        "format": "%Y-%m-%d"
+                    }
+                }
+            }
+        },
+        {
+            "id": "ana-heal-damage-by-games-played",
+            "title": "Ana Heal/Damage by Games Played",
+            "data": {
+                "x": "Games",
+                "columns": {"_fn": "series_list_remove_duplicates", "args": [
+                    {"_fn": "series_but_remove_drops", "args": ["Games", "$.data.statistics.competitive.ALL.games_played.total"]},
+                    {"_fn": "series", "args": ["Heals/10min", "$.data.statistics.competitive.ana.healing_done.avgper10"]},
+                    {"_fn": "series", "args": ["Damage/10min", "$.data.statistics.competitive.ana.hero_damage_done.avgper10"]}
+                ]},
+                "axes":{
+                    "Heals/10min": "y",
+                    "Damage/10min": "y2"
+                }
+            }
+        },
+        {
+            "id": "ana-kdr-by-games-played",
+            "title": "Ana Kills/Deaths by Games Played",
+            "data": {
+                "x": "Games",
+                "columns": {"_fn": "series_list_remove_duplicates", "args": [
+                    {"_fn": "series_but_remove_drops", "args": ["Games", "$.data.statistics.competitive.ALL.games_played.total"]},
+                    {"_fn": "series", "args": ["Deaths/10min", "$.data.statistics.competitive.ana.deaths.avgper10"]},
+                    {"_fn": "series", "args": ["Elims/10min", "$.data.statistics.competitive.ana.eliminations.avgper10"]},
+                    {"_fn": "series", "args": ["Offensive Assists/10min", "$.data.statistics.competitive.ana.offensive_assists.avgper10"]},
+                    {"_fn": "series", "args": ["Defensive Assists/10min", "$.data.statistics.competitive.ana.defensive_assists.avgper10"]},
+                    {"_fn": "series", "args": ["Nano Assists/10min", "$.data.statistics.competitive.ana.nano_boost_assists.avgper10"]},
+                    {"_fn": "series", "args": ["Nanos Applied/10min", "$.data.statistics.competitive.ana.nano_boosts_applied.avgper10"]},
+                    {"_fn": "series", "args": ["Sleeps/10min", "$.data.statistics.competitive.ana.enemies_slept.avgper10"]}
+                ]}
+            }
+        },
+        {
+            "id": "ana-time-stuff-by-games-played",
+            "title": "Ana Time Stats by Games Played",
+            "data": {
+                "x": "Games",
+                "columns": {"_fn": "series_list_remove_duplicates", "args": [
+                    {"_fn": "series_but_remove_drops", "args": ["Games", "$.data.statistics.competitive.ALL.games_played.total"]},
+                    {"_fn": "series", "args": ["On Fire Seconds/10min", "$.data.statistics.competitive.ana.time_spent_on_fire.avgper10.totalSeconds"]},
+                    {"_fn": "series", "args": ["Objective Seconds/10min", "$.data.statistics.competitive.ana.objective_time.avgper10.totalSeconds"]}
+                ]}
+            }
+        },
+        {
+            "id": "ana-percentages-by-games-played",
+            "title": "Ana Percentages by Games Played",
+            "data": {
+                "x": "Games",
+                "columns": {"_fn": "series_list_remove_duplicates", "args": [
+                    {"_fn": "series_but_remove_drops", "args": ["Games", "$.data.statistics.competitive.ALL.games_played.total"]},
+                    {"_fn": "series", "args": ["Weapon Accuracy", "$.data.statistics.competitive.ana.weapon_accuracy.total.percent"]},
+                    {"_fn": "series", "args": ["Unscoped Accuracy", "$.data.statistics.competitive.ana.unscoped_accuracy.total.percent"]},
+                    {"_fn": "series", "args": ["Scoped Accuracy", "$.data.statistics.competitive.ana.scoped_accuracy.total.percent"]},
+                    {"_fn": "series", "args": ["Win Percentage", "$.data.statistics.competitive.ana.win_percentage.total.percent"]}
+                ]}
             }
         }
     ]

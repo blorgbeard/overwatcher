@@ -111,3 +111,4 @@ config.json
 
 # generated chart data
 charts/data.js
+nohup.out
